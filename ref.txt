@@ -1,0 +1,5 @@
+E-Commerce website PHP Tutorial
+By Adam Khoury
+http://www.developphp.com
+
+We used some code from the above link

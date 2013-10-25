@@ -1,0 +1,159 @@
+-- phpMyAdmin SQL Dump
+-- version 3.2.0.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Oct 25, 2013 at 04:19 PM
+-- Server version: 5.1.37
+-- PHP Version: 5.3.0
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `project_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `adminType` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `password`, `adminType`) VALUES
+(1, 'Jane', 'ja63m@jn', 'superadmin'),
+(2, 'Portia', '0734', 'admin'),
+(7, 'Mandy', '3456', 'admin'),
+(9, 'Andy', '9874', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items`
+--
+
+CREATE TABLE IF NOT EXISTS `items` (
+  `order_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_name` varchar(50) NOT NULL,
+  PRIMARY KEY (`order_id`,`item_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`order_id`, `item_id`, `item_name`) VALUES
+(43, 1, 'Pentel'),
+(41, 1, 'Canon Pixma'),
+(42, 1, 'JAVA'),
+(44, 1, 'Pocket Mouse'),
+(44, 2, 'Canon Pixma'),
+(45, 1, 'Pentel'),
+(46, 1, 'Pocket Mouse'),
+(47, 1, 'Canon Pixma'),
+(48, 1, 'Pentel'),
+(49, 1, 'Creative Inspire'),
+(49, 2, 'Pocket Mouse'),
+(50, 1, 'Canon Pixma');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE IF NOT EXISTS `orders` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `total_amout` double NOT NULL,
+  `amout_payed` double NOT NULL,
+  `date` varchar(20) NOT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `user_id`, `total_amout`, `amout_payed`, `date`) VALUES
+(41, 11, 1109, 1109, '19:10, 30th October '),
+(42, 11, 1120, 1120, '15:33, 22nd October '),
+(43, 1, 90, 90, '17:41, 22nd October '),
+(44, 1, 1309, 1309, '17:43, 22nd October '),
+(45, 1, 30, 10, '17:48, 22nd October '),
+(46, 1, 200, 200, '17:52, 22nd October '),
+(47, 12, 1109, 1109, '11:39, 24th October '),
+(48, 12, 30, 30, '11:53, 24th October '),
+(49, 13, 1400, 1400, '14:21, 24th October '),
+(50, 1, 1109, 1109, '11:16, 25th October ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(50) NOT NULL,
+  `price` decimal(10,0) NOT NULL,
+  `description` varchar(50) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `subcategory` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `product_name` (`product_name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `product_name`, `price`, `description`, `category`, `subcategory`) VALUES
+(51, 'fbdzs', '100', 'fdfdfb', 'book', 'itProgramming'),
+(48, 'SEO', '650', 'Search Engine Optimization\r\n6th Edition', 'book', 'itProgramming'),
+(47, 'Canon Pixma', '1109', 'MG2240 MultiFunction inkjet printer', 'stationeryOffice', 'printer'),
+(46, 'Pentel', '30', 'Pentel-RSVP pens', 'stationeryOffice', 'pens'),
+(45, 'Creative Inspire', '400', 'T3300 2.1 speakers', 'computer', 'speakers'),
+(44, 'Pocket Mouse', '200', 'Wireless mobile mouse', 'computer', 'mouse');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) NOT NULL,
+  `surname` varchar(40) NOT NULL,
+  `address` varchar(40) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `id_number` varchar(13) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `name`, `surname`, `address`, `email`, `password`, `id_number`) VALUES
+(1, 'Tabi', 'Mantjiu', '33 Block L', 'nthabiseng@gmail.com', '12345', '9011250908082'),
+(12, 'Gal', 'Nkosi', 'Sosha', 'gal@gmail.com', '123456', '7012120435085'),
+(13, 'Nthabi', 'Mphela', 'Sosha', 'n@gmail.com', '1234', '7005180435085'),
+(11, 'Mandy', 'Ntuli', 'Tshwane', 'an@gmail.com', '987456', '7805180435085'),
+(14, 'Tebza', 'Pasha', 'Kwagga', 'teb@gmail.com', '123', '9005180435085');
